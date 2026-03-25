@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Application</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-orb page-orb--one"></div>
+  <div class="page-orb page-orb--two"></div>
+
+  <main class="app-shell">
+    <section class="overview-panel">
+      <div class="brand-block">
+        <p class="eyebrow">Student And Mentor Platform</p>
+        <h1>Quiz Application</h1>
+        <p class="lead">
+          A shared learning space where students take timed quizzes and mentors manage questions, review progress, and keep assessments current.
+        </p>
+      </div>
+
+      <div class="role-strip">
+        <div class="role-pill">
+          <span class="role-pill__tag">Student</span>
+          <strong>Take quizzes and track scores</strong>
+        </div>
+        <div class="role-pill">
+          <span class="role-pill__tag">Mentor</span>
+          <strong>Create and update question sets</strong>
+        </div>
+      </div>
+
+      <div class="overview-grid">
+        <article class="info-card">
+          <span class="info-card__label">Student View</span>
+          <strong>Focused Quiz Experience</strong>
+          <p>Students answer multiple-choice and fill-in-the-blank questions with live scoring and a countdown timer.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__label">Mentor View</span>
+          <strong>Question Management</strong>
+          <p>Mentors open a separate management panel to add, update, and reset the quiz question bank.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__label">Shared Flow</span>
+          <strong>Fast Assessment Cycle</strong>
+          <p>Every session stays responsive on mobile and desktop while preserving best score and question data locally.</p>
+        </article>
+      </div>
+      <div class="overview-actions">
+        <button id="open-manager-button" class="ghost-button" type="button">Mentor Panel</button>
+      </div>
+    </section>
+
+    <section class="quiz-card">
+      <header class="quiz-header">
+        <div>
+          <p class="section-label">Student Session</p>
+          <h2>Student Quiz Workspace</h2>
+        </div>
+        <div class="timer-badge" aria-live="polite">
+          <div class="timer-ring">
+            <svg viewBox="0 0 120 120" class="timer-ring__svg" aria-hidden="true">
+              <circle class="timer-ring__track" cx="60" cy="60" r="52"></circle>
+              <circle id="timer-circle" class="timer-ring__progress" cx="60" cy="60" r="52"></circle>
+            </svg>
+            <div class="timer-ring__content">
+              <span>Time Left</span>
+              <strong id="timer">60s</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="status-panel">
+        <div class="status-item">
+          <span>Question</span>
+          <strong id="question-counter">1 / 5</strong>
+        </div>
+        <div class="status-item">
+          <span>Score</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="status-item">
+          <span>Best Score</span>
+          <strong id="best-score">0</strong>
+        </div>
+      </section>
+
+      <section class="progress-panel" aria-label="Quiz progress">
+        <div class="progress-meta">
+          <span>Completion</span>
+          <span id="progress-label">Question 1 of 5</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </section>
+
+      <section id="quiz-screen" class="quiz-screen">
+        <article class="question-panel">
+          <div class="question-topline">
+            <span class="question-tag">Current Question</span>
+            <span id="question-type-badge" class="question-type-badge">Multiple Choice</span>
+          </div>
+          <h3 id="question-text">Question text appears here.</h3>
+          <div id="answer-buttons" class="answers-grid" role="list"></div>
+          <div id="fill-blank-area" class="fill-blank-area hidden">
+            <input id="fill-blank-input" class="fill-blank-input" type="text" placeholder="Type your answer here">
+            <button id="submit-answer-button" class="ghost-button ghost-button--wide" type="button">Submit Answer</button>
+          </div>
+        </article>
+
+        <div class="action-row">
+          <p id="feedback" class="feedback" aria-live="polite"></p>
+          <button id="next-button" class="action-button" type="button">Next Question</button>
+        </div>
+      </section>
+
+      <section id="result-screen" class="result-screen hidden">
+        <div class="result-badge">Session Complete</div>
+        <h3>Your final score: <span id="final-score">0</span></h3>
+        <p id="result-message" class="result-message"></p>
+        <div class="result-actions">
+          <button id="restart-button" class="action-button" type="button">Restart Quiz</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <section id="editor-modal" class="modal hidden" aria-hidden="true">
+    <div id="modal-backdrop" class="modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="editor-header">
+        <div>
+          <p class="section-label">Mentor Workspace</p>
+          <h2>Create or update questions</h2>
+        </div>
+        <div class="modal-actions">
+          <button id="reset-questions-button" class="ghost-button" type="button">Reset Defaults</button>
+          <button id="close-manager-button" class="ghost-button" type="button">Close</button>
+        </div>
+      </div>
+
+      <form id="question-form" class="question-form">
+        <label class="form-field">
+          <span>Question Type</span>
+          <select id="question-type">
+            <option value="multiple">Multiple Choice</option>
+            <option value="fill">Fill in the Blank</option>
+          </select>
+        </label>
+
+        <label class="form-field">
+          <span>Question Text</span>
+          <textarea id="question-input" rows="3" placeholder="Enter the question text"></textarea>
+        </label>
+
+        <div id="options-fields" class="options-fields">
+          <label class="form-field">
+            <span>Option A</span>
+            <input id="option-a" type="text" placeholder="First option">
+          </label>
+          <label class="form-field">
+            <span>Option B</span>
+            <input id="option-b" type="text" placeholder="Second option">
+          </label>
+          <label class="form-field">
+            <span>Option C</span>
+            <input id="option-c" type="text" placeholder="Third option">
+          </label>
+          <label class="form-field">
+            <span>Option D</span>
+            <input id="option-d" type="text" placeholder="Fourth option">
+          </label>
+        </div>
+
+        <label class="form-field">
+          <span>Correct Answer</span>
+          <input id="answer-input" type="text" placeholder="Enter the correct answer">
+        </label>
+
+        <div class="form-actions">
+          <button class="action-button" type="submit">Save Question</button>
+        </div>
+        <p id="form-feedback" class="form-feedback" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
