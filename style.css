@@ -70,6 +70,21 @@ body {
   padding: 32px 24px;
 }
 
+.auth-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 28px;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.auth-overview,
+.auth-card,
 .overview-panel,
 .quiz-card {
   border: 1px solid var(--border);
@@ -81,6 +96,65 @@ body {
 
 .overview-panel {
   padding: 34px;
+}
+
+.auth-overview,
+.auth-card {
+  padding: 34px;
+}
+
+.auth-card {
+  background: rgba(8, 18, 34, 0.9);
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 8px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.auth-tab {
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.auth-tab:hover {
+  transform: translateY(-1px);
+}
+
+.auth-tab--active {
+  color: var(--text-primary);
+  background: linear-gradient(135deg, rgba(98, 244, 194, 0.18), rgba(75, 163, 255, 0.18));
+}
+
+.auth-panel {
+  margin-top: 24px;
+}
+
+.auth-panel h2 {
+  margin-top: 8px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.auth-helper {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.auth-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
 }
 
 .brand-block h1 {
@@ -142,6 +216,39 @@ body {
   margin-top: 30px;
 }
 
+.dashboard-panel {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h3 {
+  margin-top: 8px;
+  font-size: 1.35rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.dashboard-card {
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+}
+
+.dashboard-card strong {
+  display: block;
+  margin: 8px 0 10px;
+  font-size: 1.5rem;
+}
+
+.role-view {
+  margin-top: 24px;
+}
+
 .info-card,
 .status-item,
 .question-panel,
@@ -180,7 +287,24 @@ body {
 }
 
 .overview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
   margin-top: 22px;
+}
+
+.mentor-task-grid {
+  margin-top: 22px;
+}
+
+.mentor-actions {
+  margin-top: 24px;
+}
+
+.user-greeting {
+  margin-right: auto;
+  color: var(--text-secondary);
 }
 
 .editor-header {
@@ -239,6 +363,12 @@ body {
 }
 
 .options-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.time-limit-group {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
@@ -317,6 +447,13 @@ body {
 .timer-ring__content strong {
   margin-top: 6px;
   font-size: 1.8rem;
+}
+
+.timer-limit {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .status-panel {
@@ -555,16 +692,20 @@ body {
 }
 
 @media (max-width: 1100px) {
-  .app-shell {
+  .app-shell,
+  .auth-shell {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .app-shell {
+  .app-shell,
+  .auth-shell {
     padding: 18px;
   }
 
+  .auth-overview,
+  .auth-card,
   .overview-panel,
   .quiz-card {
     padding: 22px;
@@ -587,7 +728,10 @@ body {
 
   .status-panel,
   .options-fields,
-  .role-strip {
+  .time-limit-group,
+  .dashboard-grid,
+  .role-strip,
+  .auth-tabs {
     grid-template-columns: 1fr;
   }
 

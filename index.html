@@ -10,7 +10,116 @@
   <div class="page-orb page-orb--one"></div>
   <div class="page-orb page-orb--two"></div>
 
-  <main class="app-shell">
+  <main id="auth-shell" class="auth-shell">
+    <section class="auth-overview">
+      <p class="eyebrow">Student And Mentor Platform</p>
+      <h1>Quiz Application</h1>
+      <p class="lead">
+        Sign in to continue your quiz session or create a new account to save your learning progress on this device.
+      </p>
+
+      <div class="overview-grid">
+        <article class="info-card">
+          <span class="info-card__label">Login</span>
+          <strong>Resume your session</strong>
+          <p>Returning users can sign in with their saved email and password to continue from the same device.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__label">Mentor Access</span>
+          <strong>Protected question management</strong>
+          <p>Mentors use a separate login page to access the editor and manage the quiz question bank.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__label">Create Account</span>
+          <strong>Start with a new profile</strong>
+          <p>New learners can create an account in seconds and immediately enter the quiz workspace.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="auth-tabs" role="tablist" aria-label="Authentication options">
+        <button id="show-login-button" class="auth-tab auth-tab--active" type="button">Login</button>
+        <button id="show-mentor-login-button" class="auth-tab" type="button">Mentor Login</button>
+        <button id="show-signup-button" class="auth-tab" type="button">Create Account</button>
+      </div>
+
+      <section id="login-panel" class="auth-panel">
+        <p class="section-label">Welcome Back</p>
+        <h2>Login to continue</h2>
+        <form id="login-form" class="auth-form">
+          <label class="form-field">
+            <span>Email</span>
+            <input id="login-email" type="email" placeholder="Enter your email" autocomplete="email">
+          </label>
+          <label class="form-field">
+            <span>Password</span>
+            <input id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password">
+          </label>
+          <div class="form-actions">
+            <button class="action-button" type="submit">Login</button>
+          </div>
+          <p id="login-feedback" class="form-feedback" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="mentor-login-panel" class="auth-panel hidden">
+        <p class="section-label">Mentor Access</p>
+        <h2>Login as mentor</h2>
+        <p class="auth-helper">Sign in with a mentor account to open the question management workspace.</p>
+        <form id="mentor-login-form" class="auth-form">
+          <label class="form-field">
+            <span>Email</span>
+            <input id="mentor-login-email" type="email" placeholder="Enter mentor email" autocomplete="email">
+          </label>
+          <label class="form-field">
+            <span>Password</span>
+            <input id="mentor-login-password" type="password" placeholder="Enter mentor password" autocomplete="current-password">
+          </label>
+          <div class="form-actions">
+            <button class="action-button" type="submit">Mentor Login</button>
+          </div>
+          <p id="mentor-login-feedback" class="form-feedback" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="signup-panel" class="auth-panel hidden">
+        <p class="section-label">New Profile</p>
+        <h2>Create an account</h2>
+        <form id="signup-form" class="auth-form">
+          <label class="form-field">
+            <span>Account Type</span>
+            <select id="signup-role">
+              <option value="student">Student</option>
+              <option value="mentor">Mentor</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Full Name</span>
+            <input id="signup-name" type="text" placeholder="Enter your full name" autocomplete="name">
+          </label>
+          <label class="form-field">
+            <span>Email</span>
+            <input id="signup-email" type="email" placeholder="Enter your email" autocomplete="email">
+          </label>
+          <label class="form-field">
+            <span>Password</span>
+            <input id="signup-password" type="password" placeholder="Create a password" autocomplete="new-password">
+          </label>
+          <label class="form-field">
+            <span>Confirm Password</span>
+            <input id="signup-confirm-password" type="password" placeholder="Re-enter your password" autocomplete="new-password">
+          </label>
+          <div class="form-actions">
+            <button class="action-button" type="submit">Create Account</button>
+          </div>
+          <p id="signup-feedback" class="form-feedback" aria-live="polite"></p>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <main id="app-shell" class="app-shell hidden">
     <section class="overview-panel">
       <div class="brand-block">
         <p class="eyebrow">Student And Mentor Platform</p>
@@ -20,40 +129,92 @@
         </p>
       </div>
 
-      <div class="role-strip">
-        <div class="role-pill">
-          <span class="role-pill__tag">Student</span>
-          <strong>Take quizzes and track scores</strong>
+      <div id="student-overview" class="role-view">
+        <div class="role-strip">
+          <div class="role-pill">
+            <span class="role-pill__tag">Student</span>
+            <strong>Take quizzes and track scores</strong>
+          </div>
+          <div class="role-pill">
+            <span class="role-pill__tag">Goal</span>
+            <strong>Finish each session with a stronger score</strong>
+          </div>
         </div>
-        <div class="role-pill">
-          <span class="role-pill__tag">Mentor</span>
-          <strong>Create and update question sets</strong>
+
+        <div class="overview-grid">
+          <article class="info-card">
+            <span class="info-card__label">Student Task</span>
+            <strong>Complete the quiz session</strong>
+            <p>Answer multiple-choice and fill-in-the-blank questions with live scoring and a countdown timer.</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card__label">Student Task</span>
+            <strong>Track progress and best score</strong>
+            <p>Review completion, score, and best result while moving through the quiz in a focused workspace.</p>
+          </article>
         </div>
       </div>
 
-      <div class="overview-grid">
-        <article class="info-card">
-          <span class="info-card__label">Student View</span>
-          <strong>Focused Quiz Experience</strong>
-          <p>Students answer multiple-choice and fill-in-the-blank questions with live scoring and a countdown timer.</p>
-        </article>
-        <article class="info-card">
-          <span class="info-card__label">Mentor View</span>
-          <strong>Question Management</strong>
-          <p>Mentors open a separate management panel to add, update, and reset the quiz question bank.</p>
-        </article>
-        <article class="info-card">
-          <span class="info-card__label">Shared Flow</span>
-          <strong>Fast Assessment Cycle</strong>
-          <p>Every session stays responsive on mobile and desktop while preserving best score and question data locally.</p>
-        </article>
+      <div id="mentor-overview" class="role-view hidden">
+        <div class="role-strip">
+          <div class="role-pill">
+            <span class="role-pill__tag">Mentor</span>
+            <strong>Manage the question bank</strong>
+          </div>
+          <div class="role-pill">
+            <span class="role-pill__tag">Goal</span>
+            <strong>Keep assessments accurate and current</strong>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <article class="info-card">
+            <span class="info-card__label">Mentor Task</span>
+            <strong>Create new questions</strong>
+            <p>Add multiple-choice and fill-in-the-blank questions to expand the assessment set.</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card__label">Mentor Task</span>
+            <strong>Reset and maintain content</strong>
+            <p>Reset the bank to defaults whenever the assessment needs a clean baseline.</p>
+          </article>
+        </div>
       </div>
+
       <div class="overview-actions">
-        <button id="open-manager-button" class="ghost-button" type="button">Mentor Panel</button>
+        <p id="user-greeting" class="user-greeting">Signed in as Student</p>
+        <button id="logout-button" class="ghost-button" type="button">Logout</button>
+        <button id="open-manager-button" class="ghost-button hidden" type="button">Mentor Panel</button>
       </div>
     </section>
 
-    <section class="quiz-card">
+    <section id="student-workspace" class="quiz-card">
+      <section class="dashboard-panel">
+        <div class="dashboard-header">
+          <div>
+            <p class="section-label">Dashboard</p>
+            <h3>Student Dashboard</h3>
+          </div>
+        </div>
+        <div class="dashboard-grid">
+          <article class="dashboard-card">
+            <span class="info-card__label">Best Score</span>
+            <strong id="student-dashboard-best-score">0</strong>
+            <p>Highest score recorded on this device.</p>
+          </article>
+          <article class="dashboard-card">
+            <span class="info-card__label">Questions</span>
+            <strong id="student-dashboard-question-count">0</strong>
+            <p>Total questions available in the current quiz bank.</p>
+          </article>
+          <article class="dashboard-card">
+            <span class="info-card__label">Average Time</span>
+            <strong id="student-dashboard-average-time">0s</strong>
+            <p>Average time limit assigned across all questions.</p>
+          </article>
+        </div>
+      </section>
+
       <header class="quiz-header">
         <div>
           <p class="section-label">Student Session</p>
@@ -67,9 +228,10 @@
             </svg>
             <div class="timer-ring__content">
               <span>Time Left</span>
-              <strong id="timer">60s</strong>
+              <strong id="timer">1m 0s</strong>
             </div>
           </div>
+          <p id="question-time-limit" class="timer-limit">Limit: 60 seconds (1m 0s)</p>
         </div>
       </header>
 
@@ -127,6 +289,63 @@
         </div>
       </section>
     </section>
+
+    <section id="mentor-workspace" class="quiz-card hidden">
+      <section class="dashboard-panel">
+        <div class="dashboard-header">
+          <div>
+            <p class="section-label">Dashboard</p>
+            <h3>Mentor Dashboard</h3>
+          </div>
+        </div>
+        <div class="dashboard-grid">
+          <article class="dashboard-card">
+            <span class="info-card__label">Question Bank</span>
+            <strong id="mentor-dashboard-question-count">0</strong>
+            <p>Total questions currently managed in the bank.</p>
+          </article>
+          <article class="dashboard-card">
+            <span class="info-card__label">Multiple Choice</span>
+            <strong id="mentor-dashboard-multiple-count">0</strong>
+            <p>Count of multiple-choice questions.</p>
+          </article>
+          <article class="dashboard-card">
+            <span class="info-card__label">Fill Blanks</span>
+            <strong id="mentor-dashboard-fill-count">0</strong>
+            <p>Count of fill-in-the-blank questions.</p>
+          </article>
+          <article class="dashboard-card">
+            <span class="info-card__label">Longest Time</span>
+            <strong id="mentor-dashboard-max-time">0s</strong>
+            <p>Largest time limit assigned to any question.</p>
+          </article>
+        </div>
+      </section>
+
+      <header class="quiz-header">
+        <div>
+          <p class="section-label">Mentor Session</p>
+          <h2>Mentor Task Workspace</h2>
+        </div>
+      </header>
+
+      <section class="overview-grid mentor-task-grid">
+        <article class="info-card">
+          <span class="info-card__label">Task 1</span>
+          <strong>Add or update questions</strong>
+          <p>Open the mentor panel to create new questions and maintain the existing question bank.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__label">Task 2</span>
+          <strong>Reset the assessment set</strong>
+          <p>Use the reset action when the quiz should return to its default question list.</p>
+        </article>
+      </section>
+
+      <div class="overview-actions mentor-actions">
+        <button id="open-manager-button-secondary" class="action-button" type="button">Open Mentor Panel</button>
+      </div>
+    </section>
   </main>
 
   <section id="editor-modal" class="modal hidden" aria-hidden="true">
@@ -180,6 +399,19 @@
           <span>Correct Answer</span>
           <input id="answer-input" type="text" placeholder="Enter the correct answer">
         </label>
+
+        <div class="time-limit-group">
+          <label class="form-field">
+            <span>Time Limit Minutes</span>
+            <input id="time-limit-minutes" type="number" min="0" max="10" step="1" value="1" placeholder="Minutes">
+          </label>
+
+          <label class="form-field">
+            <span>Time Limit Seconds</span>
+            <input id="time-limit-seconds" type="number" min="0" max="60" step="5" value="0" placeholder="Seconds">
+          </label>
+        </div>
+        <p id="time-limit-preview" class="form-feedback">Time per question: 60 seconds (1m 0s)</p>
 
         <div class="form-actions">
           <button class="action-button" type="submit">Save Question</button>
